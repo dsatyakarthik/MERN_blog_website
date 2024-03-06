@@ -164,6 +164,16 @@ div.post-page div.content p{
   line-height: 1.5rem;
 }
 
+div.edit-del{
+    display: inline-flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    
+}
+
 div.edit-row{
   text-align: center;
   margin-bottom: 20px;
@@ -179,6 +189,22 @@ div.post-page a.edit-btn{
   padding: 15px 30px;
   border-radius: 10px;
   text-decoration: none;
+}
+div.delete-row{
+  text-align: center;
+  margin-bottom: 20px;
+}
+div.post-page button.delete-btn{
+  background-color: #eb0b0b;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  
+  padding: 12px 15px;
+  border-radius: 10px;
+  text-decoration: none;
+
 }
 
 a svg{

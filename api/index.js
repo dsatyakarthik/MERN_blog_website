@@ -70,7 +70,7 @@ app.post('/logout',(req,res) =>{
 })
 
 app.post('/post', uploadMiddleware.single('file') ,async (req,res) =>{
-    console.log(req.file);
+    //console.log(req.file);
     const {originalname,path} = req.file;
     const parts = originalname.split('.');
     const ext = parts[parts.length - 1];
@@ -126,6 +126,21 @@ app.put('/post',uploadMiddleware.single('file'),async (req,res)=>{
     }); 
 });
 
+app.delete('/post/:postId',async (req,res) =>{
+    try {
+        const postId = req.params.postId;
+        const deletedPost = await Post.findByIdAndDelete(postId);
+        if (!deletedPost) {
+          return res.status(404).json({ error: 'Post not found' });
+        }
+        res.json({ message: 'Post deleted successfully' });
+      } 
+      catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+      }
+    
+    
+})
 
 app.get('/post',async (req,res) => {
     res.json(await Post.find()

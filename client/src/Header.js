@@ -1,10 +1,11 @@
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Header(){
   const {setUserInfo,userInfo} = useContext(UserContext);
-  
+  const navigate= useNavigate()
   useEffect(()=>{
     fetch('http://localhost:4000/profile',{
       credentials: 'include',
@@ -15,16 +16,15 @@ export default function Header(){
     })
   },[]);
 
-  function logout(){
+  const logout=()=>{
     fetch('http://localhost:4000/logout',{
       credentials: 'include',
       method:'POST',
-    });
-    setUserInfo(null);
-    
-  
-
-  }
+    })
+    .then(
+      navigate("/")
+    )
+    .then(setUserInfo(null))}
 
   const username = userInfo?.username;
   
